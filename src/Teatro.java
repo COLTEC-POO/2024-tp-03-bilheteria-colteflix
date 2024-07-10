@@ -10,5 +10,13 @@ public class Teatro extends Evento{
         return getQtdIngressos();
     }
 
+    @Override
+    public void imprimir(){
+        System.out.println("Quantidade de ingressos possiveis: " + getQtdIngressos());
+        System.out.println("Nome: " + getNome());
+        System.out.println("Local: " + getLocal());
+        System.out.println("Horario: " + getHorario());
+
+    }
 
 }
