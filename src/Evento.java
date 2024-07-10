@@ -17,6 +17,8 @@ public abstract class Evento {
         this.precoIngresso = precoIngresso;
     }
 
+    public abstract void imprimir();
+
     public String getNome(){
         return nome;
     }
