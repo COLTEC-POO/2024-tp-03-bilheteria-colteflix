@@ -1,7 +1,7 @@
 import java.util.Date;
 public class Ingresso {
     Date dataVenda;
-    int valorIngresso;
+    float valorIngresso;
 
     String tipo;
 

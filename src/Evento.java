@@ -1,12 +1,17 @@
+import java.util.ArrayList;
 import java.util.Date;
 import java.time.LocalTime;
-public abstract class Evento {
+public abstract class Evento implements IReceita{
     private String nome;
     private Date data;
     private LocalTime horario;
     private String local;
     private int qtdIngressos;
     private double precoIngresso;
+    protected ArrayList<Ingresso> ingressos = new ArrayList<>();
+    protected ArrayList<Float> Receita = new ArrayList<>();
+    protected ArrayList<Date> DataReceita = new ArrayList<>();
+    protected float TotalReceita = 0;
 
     public Evento(String nome, Date data, LocalTime horas,String local,int qtdIngressos, double precoIngresso){
         this.nome = nome;
