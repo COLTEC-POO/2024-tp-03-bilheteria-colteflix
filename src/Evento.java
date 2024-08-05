@@ -43,4 +43,10 @@ public abstract class Evento {
         return precoIngresso;
     }
     public abstract int capIngressos(int qtdIngressos);
+
+    public String toString(){
+        String string;
+        string = "Evento: " + nome + "\nDia: " + data.toString() + "\nHorário: " + horario.toString() + "\nEndereço: " + local + "\n Receitas:";
+        return string;
+    }
 }
