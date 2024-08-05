@@ -1,5 +1,5 @@
-import java.util.Date;
 import java.time.LocalTime;
+import java.util.Date;
 public class Teatro extends Evento{
 
     public Teatro(double precoIngresso){
@@ -16,6 +16,10 @@ public class Teatro extends Evento{
         System.out.println("Nome: " + getNome());
         System.out.println("Local: " + getLocal());
         System.out.println("Horario: " + getHorario());
+
+    }
+
+    public void dispoIngressos(){
 
     }
 
