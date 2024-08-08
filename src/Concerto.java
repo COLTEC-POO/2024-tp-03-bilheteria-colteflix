@@ -3,8 +3,9 @@ import java.util.Date;
 
 public class Concerto extends Evento{
 
-    public Concerto(double precoIngresso){
-        super("Orquestra Musical", new Date(), LocalTime.of(16, 00), "Casa Branca", 150, precoIngresso);
+    public Concerto(String nome,float precoIngresso){
+        super(nome, new Date(), LocalTime.of(16, 00), "Casa Branca", 150, precoIngresso);
+        this.tipo = "Concerto";
     }
 
     public void calcularReceita(){

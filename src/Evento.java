@@ -7,13 +7,14 @@ public abstract class Evento implements IReceita{
     private LocalTime horario;
     private String local;
     private int qtdIngressos;
-    private double precoIngresso;
+    private float precoIngresso;
+    protected String tipo;
     protected ArrayList<Ingresso> ingressos = new ArrayList<>();
     protected ArrayList<Float> Receita = new ArrayList<>();
     protected ArrayList<Date> DataReceita = new ArrayList<>();
     protected float TotalReceita = 0;
 
-    public Evento(String nome, Date data, LocalTime horas,String local,int qtdIngressos, double precoIngresso){
+    public Evento(String nome, Date data, LocalTime horas,String local,int qtdIngressos, float precoIngresso){
         this.nome = nome;
         this.data = data;
         this.horario = horas;
@@ -47,6 +48,11 @@ public abstract class Evento implements IReceita{
     public double getPrecoIngresso(){
         return precoIngresso;
     }
+
+    public String getTipo(){
+        return tipo;
+    }
+
     public abstract int capIngressos(int qtdIngressos);
 
     public String toString(){
