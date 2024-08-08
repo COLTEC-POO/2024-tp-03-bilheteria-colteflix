@@ -69,23 +69,52 @@ public class main {
         // Data
         while (true) {
             try {
-                String[] entrada = Dialog
+                Dialog
                         .entrada("Criar Evento",
-                                "Data do " + tipo + ": \nDigite separados por espaço ' ', o ano, o mês e o dia.")
-                        .split(" ");
+                                "Data do " + tipo + ": \nDigite separados por espaço ' ', o ano, o mês e o dia.");
+                if (Dialog.entrada == null) {
+                    break;
+                }
+                String[] entrada = Dialog.entrada.split(" ");
+                System.out.println(entrada[0]);
                 int[] entradas = { Integer.parseInt(entrada[0]), Integer.parseInt(entrada[1]),
                         Integer.parseInt(entrada[2]) };
-                boolean toBreak = false;
+                boolean toContinue = false;
                 for (int ent : entradas) {
                     if (ent <= 0) {
-                        toBreak = true;
+                        toContinue = true;
                         Dialog.mensagem("Criar Evento", "Digite valores maiores que 0.");
                         break;
                     }
                 }
-                // if ();
-                if (toBreak)
-                    break;
+                if (entradas[0] < 2024) {
+                    toContinue = true;
+                    Dialog.mensagem("Criar Evento", "Ano não pode ser anterior de 2024.");
+                }
+                if (entradas[1] < 13) {
+                    toContinue = true;
+                    Dialog.mensagem("Criar Evento", "Mês não pode ser maior que 12.");
+                }
+                if (entradas[2] < 32) {
+                    toContinue = true;
+                    Dialog.mensagem("Criar Evento", "Dia não pode ser maior que 31.");
+                }
+                if (toContinue)
+                    continue;
+                if (preco < 0f) {
+                    Dialog.mensagem("Criar Evento", "Preço tem que ser maior ou igual a 0.");
+                    continue;
+                }
+                break;
+            } catch (Exception e) {
+                Dialog.mensagem("Criar Evento", "Preço tem que ser maior ou igual a 0.");
+                continue;
+            }
+        }
+        // Preço
+        while (true) {
+            try {
+                preco = Float.parseFloat(Dialog.entrada("Criar Evento", "Preço do " + tipo + ": "));
                 // if (preco == null) return;
                 if (preco < 0f) {
                     Dialog.mensagem("Criar Evento", "Preço tem que ser maior ou igual a 0.");
