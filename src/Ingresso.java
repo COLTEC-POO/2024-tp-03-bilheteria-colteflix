@@ -1,14 +1,30 @@
 import java.util.Date;
-public abstract class Ingresso {
+public abstract class Ingresso implements IReceita{
     Date dataVenda;
-    float valorIngresso;
+    double valorIngresso;
 
     String tipo;
 
-    public Ingresso(Date dataVenda, int valorIngresso, String tipo){
+    public Ingresso(Date dataVenda, double valorIngresso, String tipo){
         this.dataVenda = dataVenda;
         this.valorIngresso = valorIngresso;
         this.tipo = tipo;
+    }
+    public void calcularReceita(){
+            valorIngresso = valorIngresso + 0;
+    }
+    public String mostrarExtrato(){
+        String string = "";
+        if(this.tipo == "Meia"){
+            string = "***********Meia Entrada***********\n";
+        }else if(this.tipo == "Normal"){
+            string = "***********Entrada Normal***********\n";
+        }else if(this.tipo == "Vip"){
+            string = "***********Entrada VIP***********\n";
+        }
+
+        string = string + "Data de compra: " + dataVenda + "\nValor da compra: " + valorIngresso;
+        return string;
     }
 
 }
