@@ -10,7 +10,7 @@ public abstract class Evento implements IReceita{
     private float precoIngresso;
     protected String tipo;
     protected ArrayList<Ingresso> ingressos = new ArrayList<>();
-    protected ArrayList<Float> Receita = new ArrayList<>();
+    protected ArrayList<Double> Receita = new ArrayList<>();
     protected ArrayList<Date> DataReceita = new ArrayList<>();
     protected float TotalReceita = 0;
 

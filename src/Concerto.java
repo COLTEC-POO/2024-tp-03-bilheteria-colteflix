@@ -26,6 +26,7 @@ public class Concerto extends Evento{
     }
 
     public String mostrarExtrato(){
+        this.calcularReceita();
         String string = "";
         float total = 0;
         for(int i = 0; i < DataReceita.size(); i++){
@@ -51,4 +52,6 @@ public class Concerto extends Evento{
         System.out.println("Horario: " + getHorario());
 
     }
+
+
 }
