@@ -29,8 +29,8 @@ public class main {
 
         // Tipo
         Dialog.opcoes("Criar Evento","Tipo do evento: ","Filme","Teatro","Concerto","Cancelar");
-        tipo = tipos[Dialog.opcao];
         if (Dialog.opcao == 3) return;
+        tipo = tipos[Dialog.opcao];
         // Nome
         while (true){
             nome = Dialog.entrada("Criar Evento","Nome do "+tipo+": ");
