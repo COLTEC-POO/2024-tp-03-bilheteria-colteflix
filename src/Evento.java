@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Date;
 import java.time.LocalTime;
+
 public abstract class Evento implements IReceita{
     private String nome;
     private Date data;
@@ -51,6 +52,10 @@ public abstract class Evento implements IReceita{
 
     public String getTipo(){
         return tipo;
+    }
+
+    public float getTotalReceita(){
+        return TotalReceita;
     }
 
     public abstract int capIngressos(int qtdIngressos);
