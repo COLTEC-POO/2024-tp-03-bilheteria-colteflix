@@ -1,13 +1,16 @@
 import java.util.ArrayList;
+import java.util.Date;
 
 public class main {
     public static ArrayList<Evento> Eventos = new ArrayList<Evento>();
-    public static void main(String[] args){
-        Dialog.mensagem("Colteflix","Bem vindo(a) ao Colteflix");
+
+    public static void main(String[] args) {
+        Dialog.mensagem("Colteflix", "Bem vindo(a) ao Colteflix");
         boolean running = true;
-        while (running){
-            Dialog.opcoes("Índice","Escolha o que fazer: ","Criar Evento","Vender Ingresso","Exibir Informações","Exibir Detalhes","Sair");
-            switch (Dialog.opcao){
+        while (running) {
+            Dialog.opcoes("Índice", "Escolha o que fazer: ", "Criar Evento", "Vender Ingresso", "Exibir Informações",
+                    "Exibir Detalhes", "Sair");
+            switch (Dialog.opcao) {
                 case 0:
                     criarEvento();
                     break;
@@ -19,92 +22,130 @@ public class main {
                     break;
                 case 4:
                     Dialog.confirmacao("Sair", "Deseja sair ?");
-                    if (Dialog.opcao == 0) running = false;
+                    if (Dialog.opcao == 0)
+                        running = false;
                     break;
             }
         }
     }
 
-    public static void criarEvento(){
-        String[] tipos = {"Filme","Teatro","Concerto"};
-        String nome = "",tipo = "";
+    public static void criarEvento() {
+        String[] tipos = { "Filme", "Teatro", "Concerto" };
+        String nome = "", tipo = "";
         float preco = 0f;
+        Date data;
 
         // Tipo
-        Dialog.opcoes("Criar Evento","Tipo do evento: ","Filme","Teatro","Concerto","Cancelar");
-        if (Dialog.opcao == 3) return;
+        Dialog.opcoes("Criar Evento", "Tipo do evento: ", "Filme", "Teatro", "Concerto", "Cancelar");
+        if (Dialog.opcao == 3)
+            return;
         tipo = tipos[Dialog.opcao];
         // Nome
-        while (true){
-            nome = Dialog.entrada("Criar Evento","Nome do "+tipo+": ");
-            if (nome == null) return;
-            if (nome.equals("")){
-                Dialog.mensagem("Criar Evento","Nome não permitido");
+        while (true) {
+            nome = Dialog.entrada("Criar Evento", "Nome do " + tipo + ": ");
+            if (nome == null)
+                return;
+            if (nome.equals("")) {
+                Dialog.mensagem("Criar Evento", "Nome não permitido");
                 continue;
             }
             break;
         }
         // Preço
-        while (true){
+        while (true) {
             try {
-                preco = Float.parseFloat(Dialog.entrada("Criar Evento","Preço do "+tipo+": "));
+                preco = Float.parseFloat(Dialog.entrada("Criar Evento", "Preço do " + tipo + ": "));
                 // if (preco == null) return;
-                if (preco < 0f){
-                    Dialog.mensagem("Criar Evento","Preço tem que ser maior ou igual a 0.");
+                if (preco < 0f) {
+                    Dialog.mensagem("Criar Evento", "Preço tem que ser maior ou igual a 0.");
                     continue;
                 }
                 break;
-            } catch (Exception e){
-                
+            } catch (Exception e) {
+                Dialog.mensagem("Criar Evento", "Preço tem que ser maior ou igual a 0.");
+                continue;
             }
         }
-        Dialog.confirmacao("Criar Evento", "Criar "+tipo+"\n"+nome+" ?");
-        if (Dialog.opcao == 1) return;
-        switch (tipo){
+        // Data
+        while (true) {
+            try {
+                String[] entrada = Dialog
+                        .entrada("Criar Evento",
+                                "Data do " + tipo + ": \nDigite separados por espaço ' ', o ano, o mês e o dia.")
+                        .split(" ");
+                int[] entradas = { Integer.parseInt(entrada[0]), Integer.parseInt(entrada[1]),
+                        Integer.parseInt(entrada[2]) };
+                boolean toBreak = false;
+                for (int ent : entradas) {
+                    if (ent <= 0) {
+                        toBreak = true;
+                        Dialog.mensagem("Criar Evento", "Digite valores maiores que 0.");
+                        break;
+                    }
+                }
+                // if ();
+                if (toBreak)
+                    break;
+                // if (preco == null) return;
+                if (preco < 0f) {
+                    Dialog.mensagem("Criar Evento", "Preço tem que ser maior ou igual a 0.");
+                    continue;
+                }
+                break;
+            } catch (Exception e) {
+                Dialog.mensagem("Criar Evento", "Preço tem que ser maior ou igual a 0.");
+                continue;
+            }
+        }
+        // Confirmação
+        Dialog.confirmacao("Criar Evento", "Criar " + tipo + "\n" + nome + " ?");
+        if (Dialog.opcao == 1)
+            return;
+        switch (tipo) {
             case "Filme":
-                Eventos.add(new Filme(nome,preco));
+                Eventos.add(new Filme(nome, preco));
                 break;
             case "Teatro":
-                Eventos.add(new Teatro(nome,preco));
+                Eventos.add(new Teatro(nome, preco));
                 break;
             case "Concerto":
-                Eventos.add(new Concerto(nome,preco));
+                Eventos.add(new Concerto(nome, preco));
                 break;
         }
 
     }
 
-    public static void venderIngresso(){
+    public static void venderIngresso() {
         String eventos = "";
-        int total = 0,posicao = 0;
-        for (Evento evento : Eventos){
-            eventos+="\n "+(total+1)+" - "+evento.tipo+" '"+evento.getNome()+"'";
+        int total = 0, posicao = 0;
+        for (Evento evento : Eventos) {
+            eventos += "\n " + (total + 1) + " - " + evento.tipo + " '" + evento.getNome() + "'";
             total++;
         }
-        while (true){
-            try{
-                posicao = Integer.parseInt(Dialog.entrada("Vender Ingresso", "Qual Evento ?:"+eventos));
-                if (posicao >= 1 && posicao <= total) break;
-                else Dialog.mensagem("Vender Ingresso", "Digite o número do Evento");
-            } catch (Exception e){
-                Dialog.mensagem("Vender Ingresso","Digite o número do Evento");
+        while (true) {
+            try {
+                posicao = Integer.parseInt(Dialog.entrada("Vender Ingresso", "Qual Evento ?:" + eventos));
+                if (posicao >= 1 && posicao <= total)
+                    break;
+                else
+                    Dialog.mensagem("Vender Ingresso", "Digite o número do Evento");
+            } catch (Exception e) {
+                Dialog.mensagem("Vender Ingresso", "Digite o número do Evento");
             }
         }
-        
-
 
     }
 
-    public static void exibirInformacoes(){
+    public static void exibirInformacoes() {
         String resultado = "",
-        linha = "----------------------------------------\n";
+                linha = "----------------------------------------\n";
         resultado += linha;
-        for (Evento evento : Eventos){
-            resultado += evento.getTipo()+" "+evento.getNome()+"\n";
-            resultado += evento.getData()+" "+evento.getHorario()+"\n";
-            resultado += evento.getLocal()+"\n";
-            resultado += evento.TotalReceita+"\n";
-            resultado+=linha;
+        for (Evento evento : Eventos) {
+            resultado += evento.getTipo() + " " + evento.getNome() + "\n";
+            resultado += evento.getData() + " " + evento.getHorario() + "\n";
+            resultado += evento.getLocal() + "\n";
+            resultado += evento.TotalReceita + "\n";
+            resultado += linha;
         }
         Dialog.mensagem("Exibir Informações", resultado);
     }
