@@ -9,7 +9,6 @@
 
 O objetivo deste trabalho prático é criar um sistema de gerenciamento de bilheteria em Java, que será integrado a um sistema de bilheteria de cinema ou teatro. O sistema de gerenciamento de bilheteria deve incorporar os conceitos de classes e métodos, arrays, herança e polimorfismo, classe Object, classes abstratas, e interfaces.
 
-
 ### Funcionalidades
 
 O sistema deverá implementar as seguintes funcionalidades:

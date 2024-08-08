@@ -3,9 +3,13 @@ import java.util.Date;
 
 public class Filme extends Evento{
 
-    public Filme(int precoIngresso){
-        super("Até o último Homem", new Date(), LocalTime.of(19, 30), "Cinemark", 200, precoIngresso);
+    public Filme(String nome,int precoIngresso){
+        super(nome, new Date(), LocalTime.of(19, 30), "Cinemark", 200, precoIngresso);
     }
+    public Filme(String nome,String local,int precoIngresso){
+        super(nome, new Date(), LocalTime.of(19, 30), local, 200, precoIngresso);
+    }
+
     @Override
     public int capIngressos(int qtdIngressos){
         return getQtdIngressos();
@@ -49,7 +53,5 @@ public class Filme extends Evento{
         string = string + "Total: " + total;
         return string;
     }
-
-
 
 }

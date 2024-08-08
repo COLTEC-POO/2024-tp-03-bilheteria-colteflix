@@ -1,8 +1,17 @@
+import java.util.Scanner;
+
 public class main {
     public static void main(String[] args){
+    }
 
-        Evento teatro = new Teatro(200.00);
-
-        teatro.imprimir();
+    public static void criarEvento(){
+        Scanner get = new Scanner(System.in);
+        System.out.println("Tipo do Evento: ");
+        String tipo = get.next();
+        Evento event;
+        // switch (tipo){
+        //     case "filme":
+        //         event = new Filme();
+        // }
     }
 }

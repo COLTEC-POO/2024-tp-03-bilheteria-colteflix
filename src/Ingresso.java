@@ -1,5 +1,5 @@
 import java.util.Date;
-public class Ingresso {
+public abstract class Ingresso {
     Date dataVenda;
     float valorIngresso;
 
