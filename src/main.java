@@ -14,6 +14,9 @@ public class main {
                 case 1:
                     venderIngresso();
                     break;
+                case 2:
+                    exibirInformacoes();
+                    break;
                 case 4:
                     Dialog.confirmacao("Sair", "Deseja sair ?");
                     if (Dialog.opcao == 0) running = false;
@@ -42,15 +45,19 @@ public class main {
             break;
         }
         // Preço
-        // while (true){ 
-        //     preco = Float.parseFloat(Dialog.entrada("Criar Evento","Preço do "+tipo+": "));
-        //     // if (preco == null) return;
-        //     if (){
-        //         Dialog.mensagem("Criar Evento",);
-        //         continue;
-        //     }
-        //     break;
-        // }
+        while (true){
+            try {
+                preco = Float.parseFloat(Dialog.entrada("Criar Evento","Preço do "+tipo+": "));
+                // if (preco == null) return;
+                if (preco < 0f){
+                    Dialog.mensagem("Criar Evento","Preço tem que ser maior ou igual a 0.");
+                    continue;
+                }
+                break;
+            } catch (Exception e){
+                
+            }
+        }
         Dialog.confirmacao("Criar Evento", "Criar "+tipo+"\n"+nome+" ?");
         if (Dialog.opcao == 1) return;
         switch (tipo){
@@ -86,5 +93,19 @@ public class main {
         
 
 
+    }
+
+    public static void exibirInformacoes(){
+        String resultado = "",
+        linha = "----------------------------------------\n";
+        resultado += linha;
+        for (Evento evento : Eventos){
+            resultado += evento.getTipo()+" "+evento.getNome()+"\n";
+            resultado += evento.getData()+" "+evento.getHorario()+"\n";
+            resultado += evento.getLocal()+"\n";
+            resultado += evento.TotalReceita+"\n";
+            resultado+=linha;
+        }
+        Dialog.mensagem("Exibir Informações", resultado);
     }
 }

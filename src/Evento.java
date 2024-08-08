@@ -53,6 +53,10 @@ public abstract class Evento implements IReceita{
         return tipo;
     }
 
+    public float getTotalReceita(){
+        return TotalReceita;
+    }
+
     public abstract int capIngressos(int qtdIngressos);
 
     public String toString(){
