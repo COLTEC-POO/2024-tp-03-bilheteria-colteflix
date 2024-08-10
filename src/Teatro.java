@@ -2,8 +2,8 @@ import java.time.LocalTime;
 import java.util.Date;
 public class Teatro extends Evento{
 
-    public Teatro(String nome,float precoIngresso){
-        super(nome, new Date(), LocalTime.of(20, 15), "Praça da liberdade", 250, precoIngresso);
+    public Teatro(String nome,float precoIngresso, int ingressosVendidos){
+        super(nome, new Date(), LocalTime.of(20, 15), "Praça da liberdade", 250, precoIngresso, ingressosVendidos);
         this.tipo = "Teatro";
     }
     @Override
