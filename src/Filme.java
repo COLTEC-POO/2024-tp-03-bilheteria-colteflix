@@ -3,12 +3,12 @@ import java.util.Date;
 
 public class Filme extends Evento{
 
-    public Filme(String nome,float precoIngresso){
-        super(nome, new Date(), LocalTime.of(19, 30), "Cinemark", 200, precoIngresso);
+    public Filme(String nome,float precoIngresso, int ingressosVendidos){
+        super(nome, new Date(), LocalTime.of(19, 30), "Cinemark", 200, precoIngresso, ingressosVendidos);
         this.tipo = "Filme";
     }
-    public Filme(String nome,String local,float precoIngresso){
-        super(nome, new Date(), LocalTime.of(19, 30), local, 200, precoIngresso);
+    public Filme(String nome,String local,float precoIngresso, int ingressosVendidos){
+        super(nome, new Date(), LocalTime.of(19, 30), local, 200, precoIngresso, ingressosVendidos);
         this.tipo = "Filme";
     }
 
@@ -42,6 +42,8 @@ public class Filme extends Evento{
             }
         }
     }
+
+
 
     public String mostrarExtrato(){
         this.calcularReceita();
