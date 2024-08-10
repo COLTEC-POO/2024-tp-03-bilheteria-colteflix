@@ -1,6 +1,6 @@
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
-
 public class main {
     public static ArrayList<Evento> Eventos = new ArrayList<Evento>();
 
@@ -21,6 +21,9 @@ public class main {
                     exibirInformacoes();
                     break;
                 case 4:
+                    exibirDetalhes();
+                    break;
+                case 5:
                     Dialog.confirmacao("Sair", "Deseja sair ?");
                     if (Dialog.opcao == 0)
                         running = false;
@@ -33,7 +36,11 @@ public class main {
         String[] tipos = { "Filme", "Teatro", "Concerto" };
         String nome = "", tipo = "";
         float preco = 0f;
-        Date data;
+        Date data = new Date();
+        LocalTime horario;
+        String local;
+        int qtdIngressos;
+        int ingressosVendidos = 0;
 
         // Tipo
         Dialog.opcoes("Criar Evento", "Tipo do evento: ", "Filme", "Teatro", "Concerto", "Cancelar");
@@ -69,9 +76,7 @@ public class main {
         // Data
         while (true) {
             try {
-                Dialog
-                        .entrada("Criar Evento",
-                                "Data do " + tipo + ": \nDigite separados por espaço ' ', o ano, o mês e o dia.");
+                Dialog.entrada("Criar Evento", "Data do " + tipo + ": \nDigite separados por espaço ' ', o ano, o mês e o dia.");
                 if (Dialog.entrada == null) {
                     break;
                 }
@@ -91,11 +96,11 @@ public class main {
                     toContinue = true;
                     Dialog.mensagem("Criar Evento", "Ano não pode ser anterior de 2024.");
                 }
-                if (entradas[1] < 13) {
+                if (entradas[1] > 12) {
                     toContinue = true;
                     Dialog.mensagem("Criar Evento", "Mês não pode ser maior que 12.");
                 }
-                if (entradas[2] < 32) {
+                if (entradas[2] > 31) {
                     toContinue = true;
                     Dialog.mensagem("Criar Evento", "Dia não pode ser maior que 31.");
                 }
@@ -132,18 +137,19 @@ public class main {
             return;
         switch (tipo) {
             case "Filme":
-                Eventos.add(new Filme(nome, preco));
+                Eventos.add(new Filme(nome, preco, ingressosVendidos));
                 break;
             case "Teatro":
-                Eventos.add(new Teatro(nome, preco));
+                Eventos.add(new Teatro(nome, preco, ingressosVendidos));
                 break;
             case "Concerto":
-                Eventos.add(new Concerto(nome, preco));
+                local = Dialog.entrada("Criar Evento", "Digite o local");
+                horario = LocalTime.parse(Dialog.entrada("Criar Evento", "Digite o horario"));
+                Dialog.entrada("Criar Evento", "quantidade de ingressos");
+                Eventos.add(new Concerto(nome, data, horario, local, 600, preco, ingressosVendidos));
                 break;
         }
-
     }
-
     public static void venderIngresso() {
         String eventos = "";
         int total = 0, posicao = 0;
@@ -165,9 +171,10 @@ public class main {
 
     }
 
+
+
     public static void exibirInformacoes() {
-        String resultado = "",
-                linha = "----------------------------------------\n";
+        String resultado = "", linha = "----------------------------------------\n";
         resultado += linha;
         for (Evento evento : Eventos) {
             resultado += evento.getTipo() + " " + evento.getNome() + "\n";
@@ -177,5 +184,15 @@ public class main {
             resultado += linha;
         }
         Dialog.mensagem("Exibir Informações", resultado);
+    }
+
+    public static void exibirDetalhes(){
+        String resultado = "", linha = "----------------------------------------\n";
+        resultado += linha;
+        for(Evento evento: Eventos){
+            resultado += evento.getTipo() + " " + evento.getNome() + "\n";
+            resultado += "Ingressos vendidos: " + evento.getIngressosVendidos();
+        }
+        Dialog.mensagem("Exibir detalhes", resultado);
     }
 }
