@@ -1,11 +1,17 @@
+import javax.lang.model.SourceVersion;
+import java.sql.SQLOutput;
 import java.time.LocalTime;
 import java.util.Date;
 
 public class Concerto extends Evento{
 
-    public Concerto(String nome,float precoIngresso){
-        super(nome, new Date(), LocalTime.of(16, 00), "Casa Branca", 150, precoIngresso);
+    public Concerto(String nome, Date data, LocalTime horario, String local,int qtdIngressos,float precoIngresso, int ingressosVendidos){
+        super(nome, data, horario, local, qtdIngressos, precoIngresso, ingressosVendidos);
         this.tipo = "Concerto";
+    }
+    @Override
+    public int capIngressos(int qtdIngressos){
+        return getQtdIngressos();
     }
 
     public void calcularReceita(){
@@ -39,19 +45,13 @@ public class Concerto extends Evento{
         return string;
     }
 
-    @Override
-    public int capIngressos(int qtdIngressos){
-        return getQtdIngressos();
-    }
+
 
     @Override
     public void imprimir(){
         System.out.println("Quantidade de ingressos possiveis: " + getQtdIngressos());
         System.out.println("Nome: " + getNome());
         System.out.println("Local: " + getLocal());
-        System.out.println("Horario: " + getHorario());
-
-    }
-
-
+        System.out.println("horario: " + getHorario());
+    };
 }
