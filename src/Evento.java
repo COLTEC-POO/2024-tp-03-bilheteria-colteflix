@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Date;
 import java.time.LocalTime;
 
 public abstract class Evento implements IReceita{
@@ -8,22 +7,21 @@ public abstract class Evento implements IReceita{
     private LocalTime horario;
     private String local;
     private int qtdIngressos;
-    private int ingressosVendidos = 0;
     private float precoIngresso;
+    private int ingressosVendidos;
     protected String tipo;
-    protected ArrayList<Ingresso> ingressos = new ArrayList<>();
-    protected ArrayList<Double> Receita = new ArrayList<>();
-    protected ArrayList<Date> DataReceita = new ArrayList<>();
+    protected ArrayList<Ingresso> ingressos = new ArrayList<Ingresso>();
+    protected ArrayList<Double> Receita = new ArrayList<Double>();
+    protected ArrayList<Date> DataReceita = new ArrayList<Date>();
     protected float TotalReceita = 0;
 
-    public Evento(String nome, Date data, LocalTime horas,String local,int qtdIngressos, float precoIngresso, int ingressosVendidos){
+    public Evento(String nome, Date data, LocalTime horas,String local,int qtdIngressos, float precoIngresso){
         this.nome = nome;
         this.data = data;
         this.horario = horas;
         this.local = local;
         this.qtdIngressos = qtdIngressos;
         this.precoIngresso = precoIngresso;
-        this.ingressosVendidos = 0;
     }
 
     public abstract void imprimir();
@@ -32,8 +30,8 @@ public abstract class Evento implements IReceita{
         return nome;
     }
 
-    public Date getData(){
-        return data;
+    public String getData(){
+        return data.getDate();
     }
 
     public LocalTime getHorario(){
@@ -56,6 +54,11 @@ public abstract class Evento implements IReceita{
         return precoIngresso;
     }
 
+    public void putIngresso(Ingresso ingresso){
+        ingressos.add(ingresso);
+        calculaIngressosVendidos();
+    }
+
     public String getTipo(){
         return tipo;
     }
@@ -65,16 +68,20 @@ public abstract class Evento implements IReceita{
     }
 
     public abstract int capIngressos(int qtdIngressos);
+    public abstract int dispoIngressos(String tipo);
 
-    public int calculaIngressosvendidos(int quantidade){
-        Dialog.mensagem("Exibir detalhes", "digite o numero do evento que deseja comprar o ingresso");
-        Dialog.entrada("Exibir detalhes", "numero do evento");
-        if(quantidade < this.qtdIngressos){
-            ingressosVendidos = ingressosVendidos + quantidade;
-            qtdIngressos = qtdIngressos - quantidade;
+    public boolean dispoLugares(){
+        calculaIngressosVendidos();
+        if (this.getIngressosVendidos() < this.getQtdIngressos()) return true;
+        return false;
+    }
 
+    public void calculaIngressosVendidos(){
+        int quantidade = 0;
+        for (Ingresso ingresso : ingressos){
+            if (ingresso != null) quantidade++;
         }
-        return ingressosVendidos;
+        this.ingressosVendidos = quantidade;
     }
 
 

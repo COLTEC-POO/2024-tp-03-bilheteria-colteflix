@@ -1,9 +1,9 @@
 import java.time.LocalTime;
-import java.util.Date;
+
 public class Teatro extends Evento{
 
-    public Teatro(String nome,float precoIngresso, int ingressosVendidos){
-        super(nome, new Date(), LocalTime.of(20, 15), "Praça da liberdade", 250, precoIngresso, ingressosVendidos);
+    public Teatro(String nome, Date data, LocalTime horario, String local,float precoIngresso){
+        super(nome, data, horario, local, 250, precoIngresso);
         this.tipo = "Teatro";
     }
     @Override
@@ -51,8 +51,17 @@ public class Teatro extends Evento{
         return string;
     }
 
-    public void dispoIngressos(){
-
+    public int dispoIngressos(String tipo){
+        if (tipo.equals("Meia")){
+            int qtdMeia = 0;
+            for (Ingresso ingresso : ingressos){
+                if (ingresso.tipo.equals("Meia")) qtdMeia++;
+            }
+            return getQtdIngressos()/5-qtdMeia;
+        }
+        return getQtdIngressos()-getIngressosVendidos();
     }
+
+    
 
 }

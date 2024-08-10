@@ -1,8 +1,6 @@
-import java.util.Date;
 public abstract class Ingresso implements IReceita{
     Date dataVenda;
     double valorIngresso;
-
     String tipo;
 
     public Ingresso(Date dataVenda, double valorIngresso, String tipo){
@@ -21,9 +19,11 @@ public abstract class Ingresso implements IReceita{
             string = "***********Entrada Normal***********\n";
         }else if(this.tipo == "Vip"){
             string = "***********Entrada VIP***********\n";
+        }else{
+            string = "***********Entrada Não Identificada***********\n";
         }
 
-        string = string + "Data de compra: " + dataVenda + "\nValor da compra: " + valorIngresso;
+        string = string + "Data de compra: " + dataVenda.getTime() + "\nValor da compra: " + valorIngresso;
         return string;
     }
 

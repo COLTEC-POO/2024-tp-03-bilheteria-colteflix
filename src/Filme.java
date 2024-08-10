@@ -1,14 +1,9 @@
 import java.time.LocalTime;
-import java.util.Date;
 
 public class Filme extends Evento{
 
-    public Filme(String nome,float precoIngresso, int ingressosVendidos){
-        super(nome, new Date(), LocalTime.of(19, 30), "Cinemark", 200, precoIngresso, ingressosVendidos);
-        this.tipo = "Filme";
-    }
-    public Filme(String nome,String local,float precoIngresso, int ingressosVendidos){
-        super(nome, new Date(), LocalTime.of(19, 30), local, 200, precoIngresso, ingressosVendidos);
+    public Filme(String nome, Date data, LocalTime horario, String local,float precoIngresso){
+        super(nome, data, horario, local, 200, precoIngresso);
         this.tipo = "Filme";
     }
 
@@ -30,7 +25,7 @@ public class Filme extends Evento{
         int i=0;
         for(Ingresso ingresso: this.ingressos){
             if(DataReceita.get(i) != null){
-                if(DataReceita.get(i) == ingresso.dataVenda){
+                if(DataReceita.get(i).getDate() == ingresso.dataVenda.getDate()){
                     Receita.set(i, Receita.get(i) + ingresso.valorIngresso);
                 }else {
                     i++;
@@ -57,6 +52,11 @@ public class Filme extends Evento{
         }
         string = string + "Total: " + total;
         return string;
+    }
+
+    public int dispoIngressos(String tipo){
+        if (tipo.equals("Vip")) return 0;
+        return getQtdIngressos()-getIngressosVendidos();
     }
 
 }
