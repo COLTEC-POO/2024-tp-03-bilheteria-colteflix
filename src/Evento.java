@@ -8,6 +8,7 @@ public abstract class Evento implements IReceita{
     private LocalTime horario;
     private String local;
     private int qtdIngressos;
+    private int ingressosVendidos = 0;
     private float precoIngresso;
     protected String tipo;
     protected ArrayList<Ingresso> ingressos = new ArrayList<>();
@@ -15,13 +16,14 @@ public abstract class Evento implements IReceita{
     protected ArrayList<Date> DataReceita = new ArrayList<>();
     protected float TotalReceita = 0;
 
-    public Evento(String nome, Date data, LocalTime horas,String local,int qtdIngressos, float precoIngresso){
+    public Evento(String nome, Date data, LocalTime horas,String local,int qtdIngressos, float precoIngresso, int ingressosVendidos){
         this.nome = nome;
         this.data = data;
         this.horario = horas;
         this.local = local;
         this.qtdIngressos = qtdIngressos;
         this.precoIngresso = precoIngresso;
+        this.ingressosVendidos = 0;
     }
 
     public abstract void imprimir();
@@ -46,6 +48,10 @@ public abstract class Evento implements IReceita{
         return qtdIngressos;
     }
 
+    public int getIngressosVendidos(){
+        return ingressosVendidos;
+    }
+
     public double getPrecoIngresso(){
         return precoIngresso;
     }
@@ -59,6 +65,18 @@ public abstract class Evento implements IReceita{
     }
 
     public abstract int capIngressos(int qtdIngressos);
+
+    public int calculaIngressosvendidos(int quantidade){
+        Dialog.mensagem("Exibir detalhes", "digite o numero do evento que deseja comprar o ingresso");
+        Dialog.entrada("Exibir detalhes", "numero do evento");
+        if(quantidade < this.qtdIngressos){
+            ingressosVendidos = ingressosVendidos + quantidade;
+            qtdIngressos = qtdIngressos - quantidade;
+
+        }
+        return ingressosVendidos;
+    }
+
 
     public String toString(){
         String string;
