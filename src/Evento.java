@@ -3,7 +3,7 @@ import java.time.LocalTime;
 import java.util.Date;
 
 public abstract class Evento implements IReceita{
-    private String nome;
+    protected String nome;
     private Date data;
     private LocalTime horario;
     private String local;
@@ -12,8 +12,6 @@ public abstract class Evento implements IReceita{
     private int ingressosVendidos;
     protected String tipo;
     protected ArrayList<Ingresso> ingressos = new ArrayList<Ingresso>();
-    protected ArrayList<Double> Receita = new ArrayList<Double>();
-    protected ArrayList<Date> DataReceita = new ArrayList<Date>();
     protected float TotalReceita = 0;
 
     public Evento(String nome,Date data ,LocalTime horas,String local,int qtdIngressos, float precoIngresso){
