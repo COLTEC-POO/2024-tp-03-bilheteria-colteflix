@@ -1,8 +1,9 @@
 import java.time.LocalTime;
+import java.util.Date;
 
 public class Filme extends Evento{
 
-    public Filme(String nome, Date data, LocalTime horario, String local,float precoIngresso){
+    public Filme(String nome, Date data,LocalTime horario, String local,float precoIngresso){
         super(nome, data, horario, local, 200, precoIngresso);
         this.tipo = "Filme";
     }
@@ -25,7 +26,7 @@ public class Filme extends Evento{
         int i=0;
         for(Ingresso ingresso: this.ingressos){
             if(DataReceita.get(i) != null){
-                if(DataReceita.get(i).getDate() == ingresso.dataVenda.getDate()){
+                if(DataReceita.get(i).getDate() == (ingresso.dataVenda.getDate())){
                     Receita.set(i, Receita.get(i) + ingresso.valorIngresso);
                 }else {
                     i++;
