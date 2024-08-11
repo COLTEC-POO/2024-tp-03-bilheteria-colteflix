@@ -1,5 +1,6 @@
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class main {
     public static ArrayList<Evento> Eventos = new ArrayList<Evento>();
@@ -186,7 +187,7 @@ public class main {
                 break;
         }
     }
-    
+
     public static void venderIngresso() {
         String eventos = "";
         int total = 0, posicao = 0;
@@ -267,7 +268,7 @@ public class main {
         if (Dialog.opcao == 1) return;
         for (int i=0;i<qtd;i++){
             switch (tipoIngresso){
-                case "Normal": 
+                case "Normal":
                     evento.putIngresso(new IngressoNormal(new Date(), evento.getPrecoIngresso()));
                     break;
                 case "Meia":
