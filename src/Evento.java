@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.time.LocalTime;
+import java.util.Date;
 
 public abstract class Evento implements IReceita{
     private String nome;
@@ -15,7 +16,7 @@ public abstract class Evento implements IReceita{
     protected ArrayList<Date> DataReceita = new ArrayList<Date>();
     protected float TotalReceita = 0;
 
-    public Evento(String nome, Date data, LocalTime horas,String local,int qtdIngressos, float precoIngresso){
+    public Evento(String nome,Date data ,LocalTime horas,String local,int qtdIngressos, float precoIngresso){
         this.nome = nome;
         this.data = data;
         this.horario = horas;
@@ -30,7 +31,7 @@ public abstract class Evento implements IReceita{
         return nome;
     }
 
-    public String getData(){
+    public int getData(){
         return data.getDate();
     }
 
