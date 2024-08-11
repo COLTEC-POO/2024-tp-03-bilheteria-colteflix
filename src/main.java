@@ -278,6 +278,7 @@ public class main {
                     break;
             }
         }
+        System.out.println(evento.mostrarExtrato());
     }
 
     public static void exibirInformacoes() {

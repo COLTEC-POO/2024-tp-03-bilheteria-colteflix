@@ -12,33 +12,19 @@ public class Concerto extends Evento{
     }
 
     public void calcularReceita(){
-        int i=0;
+        TotalReceita = 0;
         for(Ingresso ingresso: this.ingressos){
-            if(DataReceita.get(i) != null){
-                if(ingresso.dataVenda.equals(DataReceita.get(i))){
-                    Receita.set(i, Receita.get(i) + ingresso.valorIngresso);
-                }else {
-                    i++;
-                    DataReceita.set(i, ingresso.dataVenda);
-                    Receita.set(i,ingresso.valorIngresso);
-                }
-            }else{
-                DataReceita.set(i, ingresso.dataVenda);
-            }
+            TotalReceita += ingresso.valorIngresso;
         }
+        TotalReceita = TotalReceita * 100;
+        TotalReceita = (int) TotalReceita;
+        TotalReceita = TotalReceita / 100;
     }
 
     public String mostrarExtrato(){
         this.calcularReceita();
-        String string = "";
-        float total = 0;
-        for(int i = 0; i < DataReceita.size(); i++){
-            if(DataReceita.get(i) == null && Receita.get(i) != null){
-                total += Receita.get(i);
-                string = string + "Data: " + DataReceita.get(i) + "\nReceita: " + Receita.get(i) + "\n";
-            }
-        }
-        string = string + "Total: " + total;
+        Date data = new Date();
+        String string ="**********Receita " + this.nome + "**********\n" + "Data: " + data.toString() + "\n" + "Receita: " + TotalReceita;
         return string;
     }
 
