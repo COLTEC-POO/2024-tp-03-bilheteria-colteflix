@@ -1,4 +1,5 @@
 import java.time.LocalTime;
+import java.util.Date;
 
 public class Concerto extends Evento{
 
@@ -15,7 +16,7 @@ public class Concerto extends Evento{
         int i=0;
         for(Ingresso ingresso: this.ingressos){
             if(DataReceita.get(i) != null){
-                if(DataReceita.get(i) == ingresso.dataVenda){
+                if(ingresso.dataVenda.equals(DataReceita.get(i))){
                     Receita.set(i, Receita.get(i) + ingresso.valorIngresso);
                 }else {
                     i++;
