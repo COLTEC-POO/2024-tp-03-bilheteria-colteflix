@@ -1,7 +1,8 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.lang.Object;
 
-public class Date {
+public class Date extends Object{
     private int day,month,year,hour,minute,second,milisecond;
     Date(int year, int month, int day){
         this.day = day;
@@ -23,4 +24,9 @@ public class Date {
     public String getTime(){
         return this.hour+":"+this.minute+":"+this.second+" "+this.milisecond;
     }
+
+    public String toString(){
+        return getDate() +" - "+ getTime();
+    }
+
 }

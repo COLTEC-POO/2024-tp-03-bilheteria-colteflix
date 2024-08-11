@@ -83,7 +83,6 @@ public class main {
                     break;
                 }
                 String[] entrada = Dialog.entrada.split(" ");
-                System.out.println(entrada[0]);
                 int[] entradas = { Integer.parseInt(entrada[0]), Integer.parseInt(entrada[1]),
                         Integer.parseInt(entrada[2]) };
                 boolean toContinue = false;
@@ -126,7 +125,6 @@ public class main {
                 if (Dialog.entrada == null) return;
                 hora = Integer.parseInt(Dialog.entrada.split(" ")[0]);
                 minuto = Integer.parseInt(Dialog.entrada.split(" ")[1]);
-                System.out.println(""+hora+" "+minuto);
                 if (hora < 0 || minuto < 0) {
                     Dialog.mensagem("Criar Evento", "Hora ou minuto têm de ser maior ou igual a 0.");
                     continue;
@@ -299,7 +297,7 @@ public class main {
         resultado += linha;
         for(Evento evento: Eventos){
             resultado += evento.getTipo() + " " + evento.getNome() + "\n";
-            resultado += "Ingressos vendidos: " + evento.getIngressosVendidos()+linha;
+            resultado += "Ingressos vendidos: " + evento.getIngressosVendidos()+"\n"+linha;
         }
         Dialog.mensagem("Exibir detalhes", resultado);
     }
