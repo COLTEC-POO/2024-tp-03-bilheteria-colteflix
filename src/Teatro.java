@@ -1,4 +1,5 @@
 import java.time.LocalTime;
+import java.util.Date;
 
 public class Teatro extends Evento{
 
@@ -24,7 +25,7 @@ public class Teatro extends Evento{
         int i=0;
         for(Ingresso ingresso: this.ingressos){
             if(DataReceita.get(i) != null){
-                if(DataReceita.get(i) == ingresso.dataVenda){
+                if(DataReceita.get(i).equals(ingresso.dataVenda)){
                     Receita.set(i, Receita.get(i) + ingresso.valorIngresso);
                 }else {
                     i++;
@@ -61,7 +62,4 @@ public class Teatro extends Evento{
         }
         return getQtdIngressos()-getIngressosVendidos();
     }
-
-    
-
 }
