@@ -1,3 +1,4 @@
+import java.util.Date;
 public abstract class Ingresso implements IReceita{
     Date dataVenda;
     double valorIngresso;
@@ -9,7 +10,7 @@ public abstract class Ingresso implements IReceita{
         this.tipo = tipo;
     }
     public void calcularReceita(){
-            valorIngresso = valorIngresso + 0;
+        valorIngresso = valorIngresso + 0;
     }
     public String mostrarExtrato(){
         String string = "";
