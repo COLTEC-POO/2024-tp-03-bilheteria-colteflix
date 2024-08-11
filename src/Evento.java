@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.time.LocalTime;
-import java.util.Date;
 
 public abstract class Evento implements IReceita{
     private String nome;
@@ -31,7 +30,7 @@ public abstract class Evento implements IReceita{
         return nome;
     }
 
-    public int getData(){
+    public String getData(){
         return data.getDate();
     }
 

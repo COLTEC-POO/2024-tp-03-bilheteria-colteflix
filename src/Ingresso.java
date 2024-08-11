@@ -1,4 +1,3 @@
-import java.util.Date;
 public abstract class Ingresso implements IReceita{
     Date dataVenda;
     double valorIngresso;
