@@ -276,7 +276,6 @@ public class main {
                     break;
             }
         }
-        System.out.println(evento.mostrarExtrato());
     }
 
     public static void exibirInformacoes() {
@@ -286,7 +285,7 @@ public class main {
             resultado += evento.getTipo() + " " + evento.getNome() + "\n";
             resultado += evento.getData() + " " + evento.getHorario() + "\n";
             resultado += evento.getLocal() + "\n";
-            resultado += evento.TotalReceita + "\n";
+            resultado += evento.mostrarExtrato() + "\n";
             resultado += linha;
         }
         Dialog.mensagem("Exibir Informações", resultado);

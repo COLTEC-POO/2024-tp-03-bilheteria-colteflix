@@ -24,7 +24,7 @@ public class Concerto extends Evento{
     public String mostrarExtrato(){
         this.calcularReceita();
         Date data = new Date();
-        String string ="**********Receita " + this.nome + "**********\n" + "Data: " + data.toString() + "\n" + "Receita: " + TotalReceita;
+        String string ="**********Receita**********\n" + "Data: " + data.toString() + "\n" + "Receita: " + TotalReceita;
         return string;
     }
 
