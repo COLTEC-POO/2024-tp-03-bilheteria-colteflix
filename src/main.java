@@ -281,23 +281,52 @@ public class main {
     public static void exibirInformacoes() {
         String resultado = "", linha = "----------------------------------------\n";
         resultado += linha;
+        float receitaTotalAcumulada =0;
         for (Evento evento : Eventos) {
             resultado += evento.getTipo() + " " + evento.getNome() + "\n";
             resultado += evento.getData() + " " + evento.getHorario() + "\n";
             resultado += evento.getLocal() + "\n";
             resultado += evento.mostrarExtrato() + "\n";
+            evento.calcularReceita();
+            receitaTotalAcumulada += evento.TotalReceita;
             resultado += linha;
         }
+        resultado += "Receita Total Acumulada: R$"+receitaTotalAcumulada+"\n"+linha;
         Dialog.mensagem("Exibir Informações", resultado);
     }
 
     public static void exibirDetalhes(){
-        String resultado = "", linha = "----------------------------------------\n";
+        String resultado = "", linha = "----------------------------------------\n",eventos="";
         resultado += linha;
-        for(Evento evento: Eventos){
-            resultado += evento.getTipo() + " " + evento.getNome() + "\n";
-            resultado += "Ingressos vendidos: " + evento.getIngressosVendidos()+"\n"+linha;
+        int total = 0, posicao = 0;
+        for (Evento evento : Eventos) {
+            eventos += "\n " + (total + 1) + " - " + evento.tipo + " '" + evento.getNome() + "'";
+            total++;
         }
+        while (true) {
+            try {
+                Dialog.entrada("Exibir Detalhes", "Qual Evento ?:" + eventos);
+                if (Dialog.entrada == null) return;
+                posicao = Integer.parseInt(Dialog.entrada);
+                if (posicao >= 1 && posicao <= total)
+                    break;
+                else
+                    Dialog.mensagem("Exibir detalhes", "Digite o número do Evento.");
+            } catch (Exception e) {
+                Dialog.mensagem("Exibir detalhes", "Digite o número do Evento.");
+            }
+        }
+        posicao--;
+        Evento evento = Eventos.get(posicao);
+        resultado += evento.getTipo() + " " + evento.getNome() + "\n";
+        resultado += "Preço do Ingresso: R$"+evento.getPrecoIngresso()+"\n";
+        resultado += "Ingressos vendidos: " + evento.getIngressosVendidos()+"\n";
+        for (Ingresso ingresso : evento.ingressos){
+            resultado += ingresso.mostrarExtrato()+"\n";
+        }
+        resultado += linha;
+
+        
         Dialog.mensagem("Exibir detalhes", resultado);
     }
 }

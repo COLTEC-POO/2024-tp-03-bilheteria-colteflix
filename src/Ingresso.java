@@ -23,7 +23,7 @@ public abstract class Ingresso implements IReceita{
             string = "***********Entrada Não Identificada***********\n";
         }
 
-        string = string + "Data de compra: " + dataVenda.getTime() + "\nValor da compra: " + valorIngresso;
+        string = string + "Data de compra: " + dataVenda.getTime() + " Valor da compra: R$" + valorIngresso;
         return string;
     }
 
